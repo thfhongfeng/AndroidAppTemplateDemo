@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f8f8f8"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingTop="@dimen/dp_5"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_5">
+
+    <com.pine.base.component.editor.ui.TextImageDisplayView
+        android:id="@+id/day_tidv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.pine.base.component.editor.ui.TextImageDisplayView>
+</LinearLayout>

@@ -1,0 +1,80 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion build_versions.compileSdkVersion
+    buildToolsVersion build_versions.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion build_versions.minSdkVersion
+        targetSdkVersion build_versions.targetSdkVersion
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+
+        manifestPlaceholders = [baidu_for_app_key: app_key.baidu_for_app_key]
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs += [
+                    'src/main/res/layouts/activity',
+                    'src/main/res/layouts/fragment',
+                    'src/main/res/layouts/widget',
+                    'src/main/res/layouts/dialog',
+                    'src/main/res/layouts/item'
+            ]
+            switch ("${build_versions.applicationId}"){
+                case "com.pine.project1":
+                    java.srcDirs += ['src/project1/java']
+                    res.srcDirs += ['src/project1/res']
+                    break
+                default:
+                    java.srcDirs += ['src/default/java']
+                    res.srcDirs += ['src/default/res']
+                    break
+            }
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []    //disable automatic ndk-build
+        }
+    }
+    resourcePrefix "base_"
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // 第三方 dependency begin
+    api build_dependency["aigestudio_wheelpicker"]
+    api build_dependency['safewebviewbridge']
+    api build_dependency['bumptech_glide']
+    annotationProcessor build_dependency['bumptech_glide_compiler']
+    api(name: build_dependency["sina_weibo_sdk"], ext: 'aar')
+    // 第三方 dependency end
+
+    // library project begin
+    api project(':base_lib_immersionbar')
+    api project(':base_lib_autotrack')
+    // library project end
+
+    // 路由模块 begin
+    api project(':router')
+    // 路由模块 end
+}

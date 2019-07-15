@@ -1,0 +1,89 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion build_versions.compileSdkVersion
+    buildToolsVersion build_versions.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion build_versions.minSdkVersion
+        targetSdkVersion build_versions.targetSdkVersion
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // ARouter配置 begin
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        // ARouter配置 end
+
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            res.srcDirs += [
+                    'src/main/res_novice_guide',
+                    'src/main/res_console',
+                    'src/main/res_dagger2',
+                    'src/main/res_eventbus',
+                    'src/main/res_butterknife',
+                    'src/main/res_ormlite',
+                    'src/main/res_okhttp',
+                    'src/main/res_customview',
+                    'src/main/res_recyclerview',
+                    'src/main/res_pineplayer'
+            ]
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []    //disable automatic ndk-build
+        }
+    }
+    resourcePrefix "demo_"
+}
+
+repositories {
+    flatDir {
+        dirs 'libs', '../base/libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // ARouter配置 begin
+    implementation build_dependency["arouter_api"]
+    annotationProcessor build_dependency["arouter_compiler"]
+    // ARouter配置 end
+
+    // 第三方 dependency begin
+    // for Dagger2 demo begin
+    implementation build_dependency_demo["google_dragger"]
+    annotationProcessor build_dependency_demo["google_dragger_compiler"]
+    // for Dagger2 demo end
+    // for ButterKnife demo begin
+    implementation build_dependency_demo["jakewharton_butterknife"]
+    // for ButterKnife demo end
+    // for EventBus demo begin
+    implementation build_dependency_demo["greenrobot_eventbus"]
+    // for EventBus demo end
+    // for OrmLite demo begin
+    implementation build_dependency_demo["j256_ormlite_core"]
+    implementation build_dependency_demo["j256_ormlite_android"]
+    // for OrmLite demo end
+    // for OkHttp begin
+    implementation build_dependency_demo["squareup_okhttp"]
+    // for OkHttp end
+    // 第三方 dependency end
+
+    // 主体基础模块 begin
+    api project(':base')
+    // 主体基础模块 end
+}
