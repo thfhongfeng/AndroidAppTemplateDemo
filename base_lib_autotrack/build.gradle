@@ -37,9 +37,9 @@ dependencies {
     // 测试 dependency end
 
     // android官方 dependency begin
-    api build_dependency["appcompat_v7"]
-    api build_dependency["constraint_layout"]
-    api build_dependency["support_design"]
+    api build_dependency["android_appcompat_v7"]
+    api build_dependency["android_constraint_layout"]
+    api build_dependency["android_support_design"]
     // android官方 dependency end
 
     api build_dependency_autotrack["jetbrains_kotlin"]

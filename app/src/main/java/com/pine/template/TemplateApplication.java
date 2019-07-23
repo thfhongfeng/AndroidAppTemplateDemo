@@ -11,7 +11,8 @@ import com.pine.base.access.UiAccessType;
 import com.pine.base.component.map.MapSdkManager;
 import com.pine.base.component.share.manager.ShareManager;
 import com.pine.config.BuildConfig;
-import com.pine.demo.DemoApplication;
+import com.pine.config.ConfigKey;
+import com.pine.db_server.DbServerApplication;
 import com.pine.login.LoginApplication;
 import com.pine.main.MainApplication;
 import com.pine.mvc.MvcApplication;
@@ -33,7 +34,6 @@ import com.pine.tool.util.AppUtils;
 import com.pine.tool.util.LogUtils;
 import com.pine.user.UserApplication;
 import com.pine.welcome.WelcomeApplication;
-import com.sleticalboy.autotrack.AutoTrack;
 
 import java.util.HashMap;
 
@@ -47,6 +47,7 @@ public class TemplateApplication extends Application {
 
     @Override
     public void onCreate() {
+        LogUtils.d(TAG, "onCreate");
         super.onCreate();
         mApplication = this;
 
@@ -69,11 +70,7 @@ public class TemplateApplication extends Application {
         MvcApplication.attach();
         MvpApplication.attach();
         MvvmApplication.attach();
-        DemoApplication.attach();
-
-        // for 全埋点 begin
-        AutoTrack.init(mApplication);
-        // for 全埋点 end
+        DbServerApplication.attach();
     }
 
     @Override
@@ -100,7 +97,7 @@ public class TemplateApplication extends Application {
                         return DbRequestManager.getInstance().init(context, head, new IDbRequestServer() {
                             @Override
                             public DbResponse request(Bundle bundle) {
-                                return RouterManager.getDbServerRouter().callDataCommandDirect(mApplication,
+                                return RouterManager.getInstance(ConfigKey.BUNDLE_DB_SEVER_KEY).callDataCommandDirect(mApplication,
                                         RouterDbServerCommand.callDbServerCommand, bundle);
                             }
                         });

@@ -7,12 +7,21 @@ android {
     defaultConfig {
         minSdkVersion build_versions.minSdkVersion
         targetSdkVersion build_versions.targetSdkVersion
-        versionCode build_versions.versionCode
-        versionName build_versions.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        //必须要保证所有的flavor 都属于同一个维度
+        flavorDimensions "default"
+
+        // ARouter配置 begin
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        // ARouter配置 end
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,18 +29,15 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            switch ("${build_versions.applicationId}") {
-                case "com.pine.project1":
-                    java.srcDirs += ['src/project1/java']
-                    res.srcDirs += ['src/project1/res']
-                    break
-                default:
-                    java.srcDirs += ['src/default/java']
-                    res.srcDirs += ['src/default/res']
-                    break
-            }
+    productFlavors {
+        common {
+
+        }
+        huawei {
+
+        }
+        xiaomi {
+
         }
     }
 
@@ -46,6 +52,11 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // ARouter配置 begin
+    implementation build_dependency["arouter_api"]
+    annotationProcessor build_dependency["arouter_compiler"]
+    // ARouter配置 end
 
     // 第三方 dependency begin
     // 第三方 dependency end
