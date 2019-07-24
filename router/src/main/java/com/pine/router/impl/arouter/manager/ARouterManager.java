@@ -170,7 +170,7 @@ public class ARouterManager implements IRouterManager {
     private boolean checkBundleValidity(final String commandType, final Context context,
                                         final IRouterCallback callback) {
         if (TextUtils.isEmpty(mRemoteAction)) {
-            LogUtils.releaseLog(TAG, "ui remote action is null");
+            LogUtils.releaseLog(TAG, "remote action is null");
             if (callback != null && !callback.onFail(IRouterManager.FAIL_CODE_INVALID,
                     context.getString(R.string.router_remote_action_empty))) {
                 onCommandFail(commandType, context, IRouterManager.FAIL_CODE_INVALID,
