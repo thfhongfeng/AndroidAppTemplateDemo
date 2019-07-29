@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dip"
+    android:paddingTop="16dip"
+    android:paddingRight="16dip"
+    android:paddingBottom="16dip">
+
+    <ScrollView
+        android:id="@+id/console_sv"
+        android:layout_width="match_parent"
+        android:layout_height="280dip"
+        android:background="@drawable/demo_main_textview_border"
+        android:padding="1dp">
+
+        <TextView
+            android:id="@+id/console_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/load_progressbar"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/console_sv"
+        android:visibility="invisible" />
+
+    <ScrollView
+        android:id="@+id/op_sv_ao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/load_progressbar"
+        android:layout_alignLeft="@id/console_sv">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/person_table_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/add_person_name_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="130dip"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/add_person_age_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="130dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/add_person_name_et_ao"
+                    android:layout_toRightOf="@id/add_person_name_et_ao"
+                    android:hint="Age"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/add_person_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/add_person_name_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Add" />
+
+                <EditText
+                    android:id="@+id/query_person_id_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/add_person_name_et_ao"
+                    android:hint="Id"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/query_person_name_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_person_id_et_ao"
+                    android:layout_toRightOf="@id/query_person_id_et_ao"
+                    android:hint="Name"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/query_person_age_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_person_id_et_ao"
+                    android:layout_toRightOf="@id/query_person_name_et_ao"
+                    android:hint="Age"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/query_person_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_person_id_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Query" />
+
+                <EditText
+                    android:id="@+id/update_person_id_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/query_person_id_et_ao"
+                    android:hint="Id"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/update_person_name_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/update_person_id_et_ao"
+                    android:layout_toRightOf="@id/update_person_id_et_ao"
+                    android:hint="Name"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/update_person_age_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/update_person_id_et_ao"
+                    android:layout_toRightOf="@id/update_person_name_et_ao"
+                    android:hint="Age"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/update_person_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/update_person_id_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Update" />
+
+                <EditText
+                    android:id="@+id/delete_person_id_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/update_person_id_et_ao"
+                    android:hint="Id"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/delete_person_name_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/delete_person_id_et_ao"
+                    android:layout_toRightOf="@id/delete_person_id_et_ao"
+                    android:hint="Name"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/delete_person_age_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/delete_person_id_et_ao"
+                    android:layout_toRightOf="@id/delete_person_name_et_ao"
+                    android:hint="Age"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/delete_person_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/delete_person_id_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Delete" />
+
+                <Button
+                    android:id="@+id/query_all_person_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delete_person_id_et_ao"
+                    android:text="Query All" />
+
+                <Button
+                    android:id="@+id/delete_all_person_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_all_person_btn_ao"
+                    android:layout_toRightOf="@id/query_all_person_btn_ao"
+                    android:text="Delete All" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/article_table_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/add_article_title_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="130dip"
+                    android:layout_height="wrap_content"
+                    android:hint="Title"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/add_article_author_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="130dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/add_article_title_et_ao"
+                    android:layout_toRightOf="@id/add_article_title_et_ao"
+                    android:hint="Author"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/add_article_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/add_article_author_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Add" />
+
+                <EditText
+                    android:id="@+id/query_article_id_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/add_article_title_et_ao"
+                    android:hint="Id"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/query_article_title_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_article_id_et_ao"
+                    android:layout_toRightOf="@id/query_article_id_et_ao"
+                    android:hint="Title"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/query_article_author_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_article_id_et_ao"
+                    android:layout_toRightOf="@id/query_article_title_et_ao"
+                    android:hint="Author"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/query_article_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_article_id_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Query" />
+
+                <EditText
+                    android:id="@+id/update_article_id_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/query_article_id_et_ao"
+                    android:hint="Id"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/update_article_title_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/update_article_id_et_ao"
+                    android:layout_toRightOf="@id/update_article_id_et_ao"
+                    android:hint="Title"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/update_article_author_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/update_article_id_et_ao"
+                    android:layout_toRightOf="@id/update_article_title_et_ao"
+                    android:hint="Author"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/update_article_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/update_article_id_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Update" />
+
+                <EditText
+                    android:id="@+id/delete_article_id_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/update_article_id_et_ao"
+                    android:hint="Id"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/delete_article_title_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/delete_article_id_et_ao"
+                    android:layout_toRightOf="@id/delete_article_id_et_ao"
+                    android:hint="Title"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/delete_article_author_et_ao"
+                    style="@style/DemoMainMyMediumText"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/delete_article_id_et_ao"
+                    android:layout_toRightOf="@id/delete_article_title_et_ao"
+                    android:hint="Author"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/delete_article_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/delete_article_id_et_ao"
+                    android:layout_alignParentRight="true"
+                    android:text="Delete" />
+
+                <Button
+                    android:id="@+id/query_all_article_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delete_article_id_et_ao"
+                    android:text="Query All" />
+
+                <Button
+                    android:id="@+id/delete_all_article_btn_ao"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/query_all_article_btn_ao"
+                    android:layout_toRightOf="@id/query_all_article_btn_ao"
+                    android:text="Delete All" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/clear_btn_ao"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="120dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Clear Console" />
+
+            <Spinner
+                android:id="@+id/table_spinner_ao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textSize="12sp"></Spinner>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

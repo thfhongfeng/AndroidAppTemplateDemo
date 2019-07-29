@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myattrs="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/abc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dip"
+    android:paddingTop="16dip"
+    android:paddingRight="16dip"
+    android:paddingBottom="16dip">
+
+    <com.pine.demo.customview.CustomConsoleContainer
+        android:id="@+id/console_container"
+        android:layout_width="match_parent"
+        android:layout_height="280dip"
+        myattrs:demoConsoleMode="image"
+        myattrs:demoScrollOrientation="X" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/console_container">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/show_tv_btn"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Text Mode" />
+
+            <Button
+                android:id="@+id/show_img_btn"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/show_tv_btn"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="Image Mode" />
+
+            <GridLayout
+                android:id="@+id/add_btn_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/show_img_btn"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:rowCount="2">
+
+                <Button
+                    android:id="@+id/add_fire_btn"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Add 'fire'" />
+
+                <Button
+                    android:id="@+id/add_computer_btn"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Add 'computer'" />
+
+                <Button
+                    android:id="@+id/add_tree_btn"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Add 'tree'" />
+
+                <Button
+                    android:id="@+id/add_star_btn"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Add 'star'" />
+
+                <Button
+                    android:id="@+id/add_phone_btn"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Add 'phone'" />
+
+                <Button
+                    android:id="@+id/add_pad_btn"
+                    style="@style/DemoMainMyMediumButton"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:text="Add 'pad'" />
+            </GridLayout>
+
+            <Button
+                android:id="@+id/toggle_text_orientation_btn"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_btn_container"
+                android:text="Toggle Orientation" />
+
+            <Button
+                android:id="@+id/remove_all_items_btn"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/toggle_text_orientation_btn"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="Remove All Items" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

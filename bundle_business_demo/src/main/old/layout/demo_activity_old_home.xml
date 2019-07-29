@@ -24,14 +24,6 @@
             android:layout_weight="1"
             android:padding="@dimen/dp_20"></android.support.v7.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/old_demo_btn_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Old Demo"
-            android:gravity="center"
-            android:padding="@dimen/dp_10"/>
-
     </LinearLayout>
 
     <com.pine.base.component.novice_guide.NoviceGuideView

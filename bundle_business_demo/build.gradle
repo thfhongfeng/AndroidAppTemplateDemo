@@ -48,16 +48,19 @@ android {
     sourceSets {
         main {
             res.srcDirs += [
-                    'src/main/res_novice_guide',
                     'src/main/res_console',
-                    'src/main/res_dagger2',
-                    'src/main/res_eventbus',
-                    'src/main/res_butterknife',
-                    'src/main/res_ormlite',
-                    'src/main/res_okhttp',
-                    'src/main/res_customview',
-                    'src/main/res_recyclerview',
-                    'src/main/res_pineplayer'
+                    'src/main/res_wan_android',
+                    'src/main/res_novice_guide',
+                    'src/main/res_pineplayer',
+
+                    'src/main/old',
+                    'src/main/old/res_dagger2',
+                    'src/main/old/res_eventbus',
+                    'src/main/old/res_butterknife',
+                    'src/main/old/res_ormlite',
+                    'src/main/old/res_okhttp',
+                    'src/main/old/res_customview',
+                    'src/main/old/res_recyclerview'
             ]
             jniLibs.srcDir 'libs'
             jni.srcDirs = []    //disable automatic ndk-build

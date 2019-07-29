@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dip"
+    android:paddingTop="16dip"
+    android:paddingRight="16dip"
+    android:paddingBottom="16dip">
+
+    <ScrollView
+        android:id="@+id/console_sv"
+        android:layout_width="match_parent"
+        android:layout_height="280dip"
+        android:background="@drawable/demo_main_textview_border"
+        android:padding="1dp">
+
+        <TextView
+            android:id="@+id/console_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/load_progressbar"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/console_sv"
+        android:visibility="invisible" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/load_progressbar"
+        android:layout_alignLeft="@id/console_sv">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/send_cur_execute_cur_btn_aeb"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Send Event in Curr Thread Execute in Curr Thread" />
+
+            <Button
+                android:id="@+id/send_new_execute_cur_btn_aeb"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/send_cur_execute_cur_btn_aeb"
+                android:layout_alignParentLeft="true"
+                android:text="Send Event in New Thread Execute in Curr Thread" />
+
+            <Button
+                android:id="@+id/send_cur_execute_diff_btn_aeb"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/send_new_execute_cur_btn_aeb"
+                android:layout_alignParentLeft="true"
+                android:text="Send Event in Curr Thread Execute in Diff Thread" />
+
+            <Button
+                android:id="@+id/send_new_execute_diff_btn_aeb"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/send_cur_execute_diff_btn_aeb"
+                android:layout_alignParentLeft="true"
+                android:text="Send Event in New Thread Execute in Diff Thread" />
+
+            <Button
+                android:id="@+id/send_then_subscribe_btn_aeb"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/send_new_execute_diff_btn_aeb"
+                android:layout_alignParentLeft="true"
+                android:text="Send Event Then Subscribe by Others" />
+
+            <Button
+                android:id="@+id/send_sticky_then_subscribe_btn_aeb"
+                style="@style/DemoMainMyMediumButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/send_then_subscribe_btn_aeb"
+                android:layout_alignParentLeft="true"
+                android:text="Send Sticky Event Then Subscribe by Others" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

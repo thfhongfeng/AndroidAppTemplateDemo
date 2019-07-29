@@ -1,22 +1,26 @@
-package com.pine.demo;
+package com.pine.demo.old;
 
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pine.base.ui.BaseActionBarActivity;
+import com.pine.demo.R;
 import com.pine.demo.adapter.DemoAdapter;
 import com.pine.demo.bean.DemoItemEntity;
 import com.pine.demo.console.DemoConsoleActivity;
 import com.pine.demo.novice_guide.DemoNoviceGuideActivity;
-import com.pine.demo.old.DemoOldHomeActivity;
+import com.pine.demo.old.customview.CustomViewActiviy;
+import com.pine.demo.old.dagger2.Dagger2Activity;
+import com.pine.demo.old.eventbus.EventBusActivity;
+import com.pine.demo.old.okhttp.OkHttpActivity;
+import com.pine.demo.old.ormlite.OrmLiteActivity;
+import com.pine.demo.old.recyclerview.RecyclerViewActivity;
 import com.pine.demo.wan_android.DemoWanAndroidActivity;
 import com.pine.tool.widget.decor.GridSpacingItemDecoration;
 
@@ -26,7 +30,7 @@ import java.util.ArrayList;
  * Created by tanghongfeng on 2019/1/14
  */
 
-public class DemoHomeActivity extends BaseActionBarActivity {
+public class DemoOldHomeActivity extends BaseActionBarActivity {
     private RecyclerView demo_rv;
     private DemoAdapter mDemoAdapter;
 
@@ -45,7 +49,7 @@ public class DemoHomeActivity extends BaseActionBarActivity {
 
     @Override
     protected int getActivityLayoutResId() {
-        return R.layout.demo_activity_home;
+        return R.layout.demo_activity_old_home;
     }
 
     @Override
@@ -73,28 +77,36 @@ public class DemoHomeActivity extends BaseActionBarActivity {
         DemoItemEntity entity;
 
         entity = new DemoItemEntity();
-        entity.setName("Wan Android网站");
-        entity.setClazz(DemoWanAndroidActivity.class);
+        entity.setName("Dagger2");
+        entity.setClazz(Dagger2Activity.class);
         list.add(entity);
 
         entity = new DemoItemEntity();
-        entity.setName("控制台");
-        entity.setClazz(DemoConsoleActivity.class);
+        entity.setName("EventBus");
+        entity.setClazz(EventBusActivity.class);
         list.add(entity);
 
         entity = new DemoItemEntity();
-        entity.setName("新手引导");
-        entity.setClazz(DemoNoviceGuideActivity.class);
+        entity.setName("OrmLite");
+        entity.setClazz(OrmLiteActivity.class);
+        list.add(entity);
+
+        entity = new DemoItemEntity();
+        entity.setName("OkHttp");
+        entity.setClazz(OkHttpActivity.class);
+        list.add(entity);
+
+        entity = new DemoItemEntity();
+        entity.setName("CustomView");
+        entity.setClazz(CustomViewActiviy.class);
+        list.add(entity);
+
+        entity = new DemoItemEntity();
+        entity.setName("RecyclerView");
+        entity.setClazz(RecyclerViewActivity.class);
         list.add(entity);
 
         mDemoAdapter.setData(list);
         demo_rv.setAdapter(mDemoAdapter);
-
-        findViewById(R.id.old_demo_btn_tv).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DemoHomeActivity.this, DemoOldHomeActivity.class));
-            }
-        });
     }
 }

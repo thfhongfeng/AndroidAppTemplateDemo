@@ -1,6 +1,7 @@
 <resources>
-    <style name="MainMyMediumButton">
-        <item name="android:background">@drawable/main_button_bg</item>
+
+    <style name="DemoMainMyMediumButton">
+        <item name="android:background">@drawable/demo_main_button_bg</item>
         <item name="android:minHeight">36dp</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginRight">6dp</item>
@@ -8,7 +9,7 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="MainMyMediumText">
+    <style name="DemoMainMyMediumText">
         <item name="android:textSize">14sp</item>
     </style>
 
