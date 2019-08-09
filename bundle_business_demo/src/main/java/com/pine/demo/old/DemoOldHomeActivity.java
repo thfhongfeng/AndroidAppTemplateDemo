@@ -13,15 +13,12 @@ import com.pine.base.ui.BaseActionBarActivity;
 import com.pine.demo.R;
 import com.pine.demo.adapter.DemoAdapter;
 import com.pine.demo.bean.DemoItemEntity;
-import com.pine.demo.console.DemoConsoleActivity;
-import com.pine.demo.novice_guide.DemoNoviceGuideActivity;
 import com.pine.demo.old.customview.CustomViewActiviy;
 import com.pine.demo.old.dagger2.Dagger2Activity;
 import com.pine.demo.old.eventbus.EventBusActivity;
 import com.pine.demo.old.okhttp.OkHttpActivity;
 import com.pine.demo.old.ormlite.OrmLiteActivity;
 import com.pine.demo.old.recyclerview.RecyclerViewActivity;
-import com.pine.demo.wan_android.DemoWanAndroidActivity;
 import com.pine.tool.widget.decor.GridSpacingItemDecoration;
 
 import java.util.ArrayList;

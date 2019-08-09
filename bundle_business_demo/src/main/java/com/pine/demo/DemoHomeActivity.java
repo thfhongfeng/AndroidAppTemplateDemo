@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.pine.base.ui.BaseActionBarActivity;
 import com.pine.demo.adapter.DemoAdapter;
 import com.pine.demo.bean.DemoItemEntity;
-import com.pine.demo.console.DemoConsoleActivity;
+import com.pine.demo.test.DemoTestActivity;
 import com.pine.demo.novice_guide.DemoNoviceGuideActivity;
 import com.pine.demo.old.DemoOldHomeActivity;
 import com.pine.demo.wan_android.DemoWanAndroidActivity;
@@ -79,7 +79,7 @@ public class DemoHomeActivity extends BaseActionBarActivity {
 
         entity = new DemoItemEntity();
         entity.setName("控制台");
-        entity.setClazz(DemoConsoleActivity.class);
+        entity.setClazz(DemoTestActivity.class);
         list.add(entity);
 
         entity = new DemoItemEntity();

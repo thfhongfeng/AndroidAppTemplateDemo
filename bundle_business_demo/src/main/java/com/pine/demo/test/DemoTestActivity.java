@@ -1,4 +1,4 @@
-package com.pine.demo.console;
+package com.pine.demo.test;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.pine.demo.R;
 
-public class DemoConsoleActivity extends Activity {
+public class DemoTestActivity extends Activity {
     private TextView out_put_tv;
 
     @Override

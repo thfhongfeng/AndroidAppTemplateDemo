@@ -17,7 +17,7 @@
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
 
         <activity
-            android:name="com.pine.demo.console.DemoConsoleActivity"
+            android:name="com.pine.demo.test.DemoTestActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>

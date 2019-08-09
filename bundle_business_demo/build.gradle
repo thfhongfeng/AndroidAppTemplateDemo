@@ -48,7 +48,7 @@ android {
     sourceSets {
         main {
             res.srcDirs += [
-                    'src/main/res_console',
+                    'src/main/res_test',
                     'src/main/res_wan_android',
                     'src/main/res_novice_guide',
                     'src/main/res_pineplayer',
