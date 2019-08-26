@@ -13,12 +13,13 @@ import com.pine.base.component.share.manager.ShareManager;
 import com.pine.config.BuildConfig;
 import com.pine.config.ConfigKey;
 import com.pine.db_server.DbServerApplication;
+import com.pine.demo.DemoApplication;
 import com.pine.login.LoginApplication;
 import com.pine.main.MainApplication;
 import com.pine.mvc.MvcApplication;
 import com.pine.mvp.MvpApplication;
 import com.pine.mvvm.MvvmApplication;
-import com.pine.router.command.RouterDbServerCommand;
+import com.pine.base.router.command.RouterDbServerCommand;
 import com.pine.router.impl.RouterManager;
 import com.pine.template.access.UiAccessLoginExecutor;
 import com.pine.template.access.UiAccessVipLevelExecutor;
@@ -70,6 +71,7 @@ public class TemplateApplication extends Application {
         MvcApplication.attach();
         MvpApplication.attach();
         MvvmApplication.attach();
+        DemoApplication.attach();
         DbServerApplication.attach();
     }
 
@@ -87,6 +89,8 @@ public class TemplateApplication extends Application {
     }
 
     private void initManager() {
+        RouterManager.init("com.pine.base.router.command");
+
         ShareManager.getInstance().init(this);
 
         RequestManager.init(this, new IRequestManagerFactory() {
