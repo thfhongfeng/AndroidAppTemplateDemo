@@ -1,5 +1,6 @@
 package com.pine.base.component.uploader.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -26,7 +27,6 @@ import com.pine.base.recycle_view.BaseListViewHolder;
 import com.pine.base.recycle_view.adapter.BaseNoPaginationListAdapter;
 import com.pine.base.recycle_view.bean.BaseListAdapterItemEntity;
 import com.pine.base.recycle_view.bean.BaseListAdapterItemProperty;
-import com.pine.tool.ui.Activity;
 import com.pine.tool.util.LogUtils;
 
 import java.util.ArrayList;
