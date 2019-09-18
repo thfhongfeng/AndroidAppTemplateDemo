@@ -89,8 +89,8 @@ public abstract class UploadFileRecyclerView extends RecyclerView implements ILi
 
     public void initUpload(@NonNull Activity activity) {
         mActivity = activity;
-        if (mActivity == null || !(mActivity instanceof ILifeCircleView)) {
-            throw new IllegalStateException("Activity should not be empty or instance of ILifeCircleViewContainer");
+        if (mActivity == null || !(mActivity instanceof ILifeCircleViewContainer)) {
+            throw new IllegalStateException("Activity should not be empty and must be a instance of ILifeCircleViewContainer");
         }
         ((ILifeCircleViewContainer) activity).attachCircleView(this);
         mIsInit = true;
@@ -99,8 +99,8 @@ public abstract class UploadFileRecyclerView extends RecyclerView implements ILi
     protected void initUpload(@NonNull Activity activity,
                               @NonNull OneByOneUploadAdapter adapter, int requestCodeSelectFile) {
         mActivity = activity;
-        if (mActivity == null || !(mActivity instanceof ILifeCircleView)) {
-            throw new IllegalStateException("Activity should not be empty or instance of ILifeCircleViewContainer");
+        if (mActivity == null || !(mActivity instanceof ILifeCircleViewContainer)) {
+            throw new IllegalStateException("Activity should not be empty and must be a instance of ILifeCircleViewContainer");
         }
         ((ILifeCircleViewContainer) activity).attachCircleView(this);
         mTogetherUploadMode = false;
@@ -118,8 +118,8 @@ public abstract class UploadFileRecyclerView extends RecyclerView implements ILi
     public void initUpload(@NonNull Activity activity,
                            @NonNull TogetherUploadAdapter adapter, int requestCodeSelectFile) {
         mActivity = activity;
-        if (mActivity == null || !(mActivity instanceof ILifeCircleView)) {
-            throw new IllegalStateException("Activity should not be empty or instance of ILifeCircleViewContainer");
+        if (mActivity == null || !(mActivity instanceof ILifeCircleViewContainer)) {
+            throw new IllegalStateException("Activity should not be empty and must be a instance of ILifeCircleViewContainer");
         }
         ((ILifeCircleViewContainer) activity).attachCircleView(this);
         mTogetherUploadMode = true;
@@ -292,7 +292,7 @@ public abstract class UploadFileRecyclerView extends RecyclerView implements ILi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == mRequestCodeCrop) {
-            if (resultCode == android.app.Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 List<String> newSelectList = new ArrayList<>();
                 newSelectList.add(mCurCropPhotoPath);
                 LogUtils.d(TAG, "onActivityResult REQUEST_CODE_CROP" +
@@ -300,7 +300,7 @@ public abstract class UploadFileRecyclerView extends RecyclerView implements ILi
                 uploadFileOneByOne(newSelectList);
             }
         } else if (requestCode == mRequestCodeSelectFile) {
-            if (resultCode == android.app.Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 if (getUploadFileType() == FileUploadComponent.TYPE_IMAGE) {
                     List<String> newSelectList = data.getStringArrayListExtra(
                             ImageSelector.INTENT_SELECTED_IMAGE_LIST);
