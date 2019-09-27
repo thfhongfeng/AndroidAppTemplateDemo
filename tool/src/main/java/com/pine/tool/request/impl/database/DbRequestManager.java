@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.pine.tool.request.DownloadRequestBean;
 import com.pine.tool.request.IRequestManager;
 import com.pine.tool.request.IResponseListener;
 import com.pine.tool.request.RequestBean;
 import com.pine.tool.request.Response;
+import com.pine.tool.request.UploadRequestBean;
 import com.pine.tool.util.LogUtils;
 
 import org.json.JSONException;
@@ -16,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -31,7 +34,7 @@ public class DbRequestManager implements IRequestManager {
     private static HashMap<String, String> mHeaderParams = new HashMap<>();
     private static HashMap<String, String> mCookies = new HashMap<>();
     private static IDbRequestServer mRequestServer;
-    private String mSessionId;
+    private HashMap<String, String> mSessionIdMap = new HashMap<>();
 
     private DbRequestManager() {
 
@@ -75,7 +78,7 @@ public class DbRequestManager implements IRequestManager {
             listener.onFailed(requestBean.getWhat(), failRsp);
             return;
         }
-        Response response = toResponse(dbResponse);
+        Response response = toResponse(dbResponse, requestBean);
 
         mCookies = dbResponse.getCookies();
         if (response.isSucceed()) {
@@ -87,7 +90,7 @@ public class DbRequestManager implements IRequestManager {
     }
 
     @Override
-    public void setDownloadRequest(final @NonNull RequestBean requestBean,
+    public void setDownloadRequest(final @NonNull DownloadRequestBean requestBean,
                                    final @NonNull IResponseListener.OnDownloadListener listener) {
         DbRequestBean dbRequestBean = toDbRequestBean(requestBean);
         // Test code begin
@@ -122,10 +125,10 @@ public class DbRequestManager implements IRequestManager {
     private HashMap<Integer, Integer> mUploadCountMap = new HashMap<>();
 
     @Override
-    public void setUploadRequest(final @NonNull RequestBean requestBean,
+    public void setUploadRequest(final @NonNull UploadRequestBean requestBean,
                                  final @NonNull IResponseListener.OnUploadListener processListener,
                                  final @NonNull IResponseListener.OnResponseListener responseListener) {
-        List<RequestBean.FileBean> fileBeanList = requestBean.getUploadFileList();
+        List<UploadRequestBean.FileBean> fileBeanList = requestBean.getUploadFileList();
         responseListener.onStart(requestBean.getWhat());
         if (fileBeanList == null || fileBeanList.size() < 1) {
             Exception exception = new Exception("file is null");
@@ -144,7 +147,7 @@ public class DbRequestManager implements IRequestManager {
         mUploadCountMap.put(requestBean.hashCode(), fileBeanList.size());
         HashMap<String, String> cookies = new HashMap<>();
         final List<Object> respDataList = new ArrayList<>();
-        for (final RequestBean.FileBean fileBean : fileBeanList) {
+        for (final UploadRequestBean.FileBean fileBean : fileBeanList) {
             final DbRequestBean bean = toDbRequestBean(requestBean);
             ArrayList<DbRequestBean.FileBean> list = new ArrayList<>();
             list.add(new DbRequestBean.FileBean(fileBean.getFileKey(), fileBean.getFileName(), fileBean.getFile(), fileBean.getPosition()));
@@ -161,7 +164,7 @@ public class DbRequestManager implements IRequestManager {
             } else {
                 cookies = dbResponse.getCookies();
             }
-            final Response response = toResponse(dbResponse);
+            final Response response = toResponse(dbResponse, requestBean);
             if (response.isSucceed()) {
                 isAllSuccess = isAllSuccess && true;
                 new Handler().post(new Runnable() {
@@ -280,41 +283,23 @@ public class DbRequestManager implements IRequestManager {
     }
 
     @Override
-    public void addGlobalSessionCookie(HashMap<String, String> headerMap) {
-        if (headerMap == null) {
-            return;
-        }
-        mHeaderParams.putAll(headerMap);
-    }
-
-    @Override
-    public void removeGlobalSessionCookie(List<String> keyList) {
-        if (keyList == null || keyList.size() < 1) {
-            return;
-        }
-        for (String key : keyList) {
-            mHeaderParams.remove(key);
-        }
-    }
-
-    @Override
-    public String getSessionId() {
-        return mSessionId;
-    }
-
-    @Override
-    public void setSessionId(String sessionId) {
-        mSessionId = sessionId;
-    }
-
-    @Override
     public void clearCookie() {
         mCookies = new HashMap<>();
     }
 
     @Override
-    public Map<String, String> getSessionCookie() {
+    public Map<String, String> getLastSessionCookie() {
         return mCookies;
+    }
+
+    @Override
+    public String getSessionId(String sysTag) {
+        return mSessionIdMap.get(sysTag);
+    }
+
+    @Override
+    public void setSessionId(String sysTag, String sessionId) {
+        mSessionIdMap.put(sysTag, sessionId);
     }
 
     private DbRequestBean toDbRequestBean(@NonNull RequestBean requestBean) {
@@ -325,31 +310,45 @@ public class DbRequestManager implements IRequestManager {
         dbRequestBean.setNeedLogin(requestBean.isNeedLogin());
         dbRequestBean.setActionType(requestBean.getActionType());
 
-        dbRequestBean.setSaveFolder(requestBean.getSaveFolder());
-        dbRequestBean.setSaveFileName(requestBean.getSaveFileName());
-        dbRequestBean.setContinue(requestBean.isContinue());
-        dbRequestBean.setDeleteOld(requestBean.isDeleteOld());
+        if (requestBean instanceof DownloadRequestBean) {
+            dbRequestBean.setSaveFolder(((DownloadRequestBean) requestBean).getSaveFolder());
+            dbRequestBean.setSaveFileName(((DownloadRequestBean) requestBean).getSaveFileName());
+            dbRequestBean.setContinue(((DownloadRequestBean) requestBean).isContinue());
+            dbRequestBean.setDeleteOld(((DownloadRequestBean) requestBean).isDeleteOld());
+        }
 
-        dbRequestBean.setUpLoadFileKey(requestBean.getUpLoadFileKey());
-        List<RequestBean.FileBean> fileBeanList = requestBean.getUploadFileList();
-        if (fileBeanList != null && requestBean.getUploadFileList().size() > 0) {
-            List<DbRequestBean.FileBean> dbFileBeanList = new ArrayList<>();
-            for (RequestBean.FileBean entity : fileBeanList) {
-                DbRequestBean.FileBean fileBean = new DbRequestBean.FileBean(entity.getFileKey(),
-                        entity.getFileName(), entity.getFile(), entity.getPosition());
-                dbFileBeanList.add(fileBean);
+        if (requestBean instanceof UploadRequestBean) {
+            dbRequestBean.setUpLoadFileKey(((UploadRequestBean) requestBean).getUpLoadFileKey());
+            List<UploadRequestBean.FileBean> fileBeanList = ((UploadRequestBean) requestBean).getUploadFileList();
+            if (fileBeanList != null && ((UploadRequestBean) requestBean).getUploadFileList().size() > 0) {
+                List<DbRequestBean.FileBean> dbFileBeanList = new ArrayList<>();
+                for (UploadRequestBean.FileBean entity : fileBeanList) {
+                    DbRequestBean.FileBean fileBean = new DbRequestBean.FileBean(entity.getFileKey(),
+                            entity.getFileName(), entity.getFile(), entity.getPosition());
+                    dbFileBeanList.add(fileBean);
+                }
+                dbRequestBean.setUploadFileList(dbFileBeanList);
             }
-            dbRequestBean.setUploadFileList(dbFileBeanList);
         }
         return dbRequestBean;
     }
 
-    private Response toResponse(@NonNull DbResponse dbResponse) {
+    private Response toResponse(@NonNull DbResponse dbResponse, RequestBean requestBean) {
         Response response = new Response();
         response.setSucceed(dbResponse.isSucceed());
         response.setTag(dbResponse.getTag());
         response.setResponseCode(dbResponse.getResponseCode());
         response.setData(dbResponse.getData());
+        HashMap<String, String> cookies = dbResponse.getCookies();
+        if (cookies != null && cookies.size() > 0) {
+            Iterator<Map.Entry<String, String>> iterator = cookies.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, String> entry = iterator.next();
+                if (SESSION_ID.equals(entry.getKey().toUpperCase())) {
+                    setSessionId(requestBean.getSysTag(), entry.getValue());
+                }
+            }
+        }
         response.setCookies(dbResponse.getCookies());
         response.setException(dbResponse.getException());
         return response;

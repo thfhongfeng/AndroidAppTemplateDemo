@@ -4,11 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.pine.tool.request.DownloadRequestBean;
 import com.pine.tool.request.IRequestManager;
 import com.pine.tool.request.IResponseListener;
 import com.pine.tool.request.RequestBean;
 import com.pine.tool.request.RequestMethod;
 import com.pine.tool.request.Response;
+import com.pine.tool.request.UploadRequestBean;
 import com.pine.tool.util.LogUtils;
 import com.yanzhenjie.nohttp.BasicBinary;
 import com.yanzhenjie.nohttp.Binary;
@@ -49,7 +51,7 @@ public class NoRequestManager implements IRequestManager {
     private static HashMap<String, String> mHeaderParams = new HashMap<>();
     private RequestQueue mRequestQueue;
     private DownloadQueue mDownloadQueue;
-    private String mSessionId;
+    private HashMap<String, String> mSessionIdMap = new HashMap<>();
 
     private NoRequestManager() {
 
@@ -70,7 +72,8 @@ public class NoRequestManager implements IRequestManager {
     /**
      * 标准回调请求
      */
-    private OnResponseListener getResponseListener(final IResponseListener.OnResponseListener listener) {
+    private OnResponseListener getResponseListener(final IResponseListener.OnResponseListener listener,
+                                                   final RequestBean requestBean) {
         return new OnResponseListener() {
             @Override
             public void onStart(int what) {
@@ -88,7 +91,11 @@ public class NoRequestManager implements IRequestManager {
                 List<HttpCookie> list = response.getHeaders().getCookies();
                 HashMap<String, String> cookies = new HashMap<>();
                 for (int i = 0; i < list.size(); i++) {
+                    HttpCookie cookie = list.get(i);
                     cookies.put(list.get(i).getName(), list.get(i).getValue());
+                    if (SESSION_ID.equals(cookie.getName().toUpperCase())) {
+                        setSessionId(requestBean.getSysTag(), cookie.getValue());
+                    }
                 }
                 httpResponse.setCookies(cookies);
                 listener.onSucceed(what, httpResponse);
@@ -105,7 +112,11 @@ public class NoRequestManager implements IRequestManager {
                 List<HttpCookie> list = response.getHeaders().getCookies();
                 HashMap<String, String> cookies = new HashMap<>();
                 for (int i = 0; i < list.size(); i++) {
+                    HttpCookie cookie = list.get(i);
                     cookies.put(list.get(i).getName(), list.get(i).getValue());
+                    if (SESSION_ID.equals(cookie.getName().toUpperCase())) {
+                        setSessionId(requestBean.getSysTag(), cookie.getValue());
+                    }
                 }
                 httpResponse.setCookies(cookies);
                 listener.onFailed(what, httpResponse);
@@ -149,7 +160,7 @@ public class NoRequestManager implements IRequestManager {
     }
 
     private OnUploadListener getUploadListener(final IResponseListener.OnUploadListener listener,
-                                               final RequestBean.FileBean fileBean) {
+                                               final UploadRequestBean.FileBean fileBean) {
         return new OnUploadListener() {
             @Override
             public void onStart(int what) {
@@ -189,10 +200,9 @@ public class NoRequestManager implements IRequestManager {
             public void onSaveCookie(URI uri, HttpCookie cookie) {
                 if (SESSION_ID.equals(cookie.getName().toUpperCase())) {
                     cookie.setMaxAge(HeaderUtil.getMaxExpiryMillis());
-                    setSessionId(cookie.getValue());
                 }
-                LogUtils.d(TAG, "onCookieSave url:" + uri.toString() +
-                        "\r\ncookie:" + cookie.toString());
+//                LogUtils.d(TAG, "onCookieSave url:" + uri.toString() +
+//                        "\r\ncookie:" + cookie.toString());
             }
 
             // 当NoHttp的Cookie过期时被删除时此方法被调用
@@ -219,12 +229,13 @@ public class NoRequestManager implements IRequestManager {
             request.setCancelSign(requestBean.getSign());
         }
         insertGlobalSessionCookie(request);
+        insertExtraSessionCookie(request, requestBean.getHeaderParam());
         mRequestQueue.add(requestBean.getWhat(), (Request) addParams(request,
-                requestBean.getParams()), getResponseListener(listener));
+                requestBean.getParams()), getResponseListener(listener, requestBean));
     }
 
     @Override
-    public void setDownloadRequest(@NonNull RequestBean requestBean, @NonNull IResponseListener.OnDownloadListener listener) {
+    public void setDownloadRequest(@NonNull DownloadRequestBean requestBean, @NonNull IResponseListener.OnDownloadListener listener) {
         IBasicRequest request = NoHttp.createDownloadRequest(requestBean.getUrl(),
                 transferToNoHttpHttpMethod(requestBean.getRequestMethod()),
                 requestBean.getSaveFolder(), requestBean.getSaveFileName(),
@@ -233,12 +244,13 @@ public class NoRequestManager implements IRequestManager {
             request.setCancelSign(requestBean.getSign());
         }
         insertGlobalSessionCookie(request);
+        insertExtraSessionCookie(request, requestBean.getHeaderParam());
         mDownloadQueue.add(requestBean.getWhat(), (DownloadRequest) addParams(request,
                 requestBean.getParams()), getDownloadListener(listener));
     }
 
     @Override
-    public void setUploadRequest(@NonNull RequestBean requestBean, @NonNull IResponseListener.OnUploadListener processListener,
+    public void setUploadRequest(@NonNull UploadRequestBean requestBean, @NonNull IResponseListener.OnUploadListener processListener,
                                  @NonNull IResponseListener.OnResponseListener responseListener) {
         if (requestBean.getUploadFileList() == null) {
             return;
@@ -247,7 +259,7 @@ public class NoRequestManager implements IRequestManager {
         List<Binary> binaries = new ArrayList<>();
         boolean isMulFileKey = TextUtils.isEmpty(requestBean.getUpLoadFileKey());
         for (int i = 0; i < requestBean.getUploadFileList().size(); i++) {
-            RequestBean.FileBean fileBean = requestBean.getUploadFileList().get(i);
+            UploadRequestBean.FileBean fileBean = requestBean.getUploadFileList().get(i);
             BasicBinary binary = null;
             try {
                 binary = new InputStreamBinary(new FileInputStream(fileBean.getFile()), fileBean.getFileName());
@@ -275,11 +287,12 @@ public class NoRequestManager implements IRequestManager {
         request.setCancelSign(requestBean.getSign());
 
         insertGlobalSessionCookie(request);
-        mRequestQueue.add(requestBean.getWhat(), request, getResponseListener(responseListener));
+        insertExtraSessionCookie(request, requestBean.getHeaderParam());
+        mRequestQueue.add(requestBean.getWhat(), request, getResponseListener(responseListener, requestBean));
     }
 
     private void insertGlobalSessionCookie(IBasicRequest request) {
-        if (mHeaderParams.size() != 0) {
+        if (mHeaderParams != null && mHeaderParams.size() > 0) {
             Collection keys = mHeaderParams.keySet();
             for (Iterator iterator = keys.iterator(); iterator.hasNext(); ) {
                 Object key = iterator.next();
@@ -287,6 +300,16 @@ public class NoRequestManager implements IRequestManager {
             }
         }
         request.addHeader(MOBILE_MODEL_KEY, mMobileModel);
+    }
+
+    private void insertExtraSessionCookie(IBasicRequest request, HashMap<String, String> headerParams) {
+        if (headerParams != null && headerParams.size() > 0) {
+            Collection keys = headerParams.keySet();
+            for (Iterator iterator = keys.iterator(); iterator.hasNext(); ) {
+                Object key = iterator.next();
+                request.add(key.toString(), headerParams.get(key));
+            }
+        }
     }
 
     @Override
@@ -302,31 +325,13 @@ public class NoRequestManager implements IRequestManager {
     }
 
     @Override
-    public void addGlobalSessionCookie(HashMap<String, String> headerMap) {
-        if (headerMap == null) {
-            return;
-        }
-        mHeaderParams.putAll(headerMap);
+    public String getSessionId(String sysTag) {
+        return mSessionIdMap.get(sysTag);
     }
 
     @Override
-    public void removeGlobalSessionCookie(List<String> keyList) {
-        if (keyList == null || keyList.size() < 1) {
-            return;
-        }
-        for (String key : keyList) {
-            mHeaderParams.remove(key);
-        }
-    }
-
-    @Override
-    public String getSessionId() {
-        return mSessionId;
-    }
-
-    @Override
-    public void setSessionId(String sessionId) {
-        mSessionId = sessionId;
+    public void setSessionId(String sysTag, String sessionId) {
+        mSessionIdMap.put(sysTag, sessionId);
     }
 
     @Override
@@ -335,7 +340,7 @@ public class NoRequestManager implements IRequestManager {
     }
 
     @Override
-    public Map<String, String> getSessionCookie() {
+    public Map<String, String> getLastSessionCookie() {
         List<HttpCookie> list = NoHttp.getCookieManager().getCookieStore().getCookies();
         HashMap<String, String> cookies = new HashMap<>();
         for (int i = 0; i < list.size(); i++) {

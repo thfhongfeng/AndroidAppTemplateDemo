@@ -21,7 +21,6 @@ import com.pine.base.component.image_loader.ImageLoaderManager;
 import com.pine.base.component.uploader.FileUploadComponent;
 import com.pine.base.component.uploader.FileUploadComponent.OneByOneUploadAdapter;
 import com.pine.base.component.uploader.IFileOneByOneUploader;
-import com.pine.base.component.uploader.IFileUploaderConfig;
 import com.pine.base.component.uploader.bean.FileUploadBean;
 import com.pine.base.component.uploader.bean.FileUploadState;
 import com.pine.base.component.uploader.ui.UploadFileLinearLayout;

@@ -13,6 +13,7 @@ import com.pine.mvvm.bean.MvvmShopDetailEntity;
 import com.pine.mvvm.bean.MvvmShopItemEntity;
 import com.pine.tool.architecture.mvvm.model.IModelAsyncResponse;
 import com.pine.tool.exception.BusinessException;
+import com.pine.tool.request.RequestBean;
 import com.pine.tool.request.RequestManager;
 import com.pine.tool.request.callback.JsonCallback;
 import com.pine.tool.util.DecimalUtils;
@@ -43,36 +44,41 @@ public class MvvmShopModel {
     public void requestAddShop(final Map<String, String> params,
                                @NonNull final IModelAsyncResponse<MvvmShopDetailEntity> callback) {
         String url = MvvmUrlConstants.Add_Shop;
-        RequestManager.setJsonRequest(url, params, TAG, REQUEST_ADD_SHOP,
-                handleResponse(callback, params));
+        RequestBean requestBean = new RequestBean(url, REQUEST_ADD_SHOP, params);
+        requestBean.setModuleTag(TAG);
+        RequestManager.setJsonRequest(requestBean, handleResponse(callback, params));
     }
 
     public void requestShopDetailData(final Map<String, String> params,
                                       @NonNull final IModelAsyncResponse<MvvmShopDetailEntity> callback) {
         String url = MvvmUrlConstants.Query_ShopDetail;
-        RequestManager.setJsonRequest(url, params, TAG, REQUEST_QUERY_SHOP_DETAIL,
-                handleResponse(callback, params));
+        RequestBean requestBean = new RequestBean(url, REQUEST_QUERY_SHOP_DETAIL, params);
+        requestBean.setModuleTag(TAG);
+        RequestManager.setJsonRequest(requestBean, handleResponse(callback, params));
     }
 
     public void requestShopListData(final Map<String, String> params,
                                     @NonNull final IModelAsyncResponse<ArrayList<MvvmShopItemEntity>> callback) {
         String url = MvvmUrlConstants.Query_ShopList;
-        RequestManager.setJsonRequest(url, params, TAG, REQUEST_QUERY_SHOP_LIST,
-                handleResponse(callback, params));
+        RequestBean requestBean = new RequestBean(url, REQUEST_QUERY_SHOP_LIST, params);
+        requestBean.setModuleTag(TAG);
+        RequestManager.setJsonRequest(requestBean, handleResponse(callback, params));
     }
 
     public void requestShopAndProductListData(Map<String, String> params,
                                               @NonNull final IModelAsyncResponse<ArrayList<MvvmShopAndProductEntity>> callback) {
         String url = MvvmUrlConstants.Query_ShopAndProductList;
-        RequestManager.setJsonRequest(url, params, TAG, REQUEST_QUERY_SHOP_AND_PRODUCT_LIST,
-                handleResponse(callback, params));
+        RequestBean requestBean = new RequestBean(url, REQUEST_QUERY_SHOP_AND_PRODUCT_LIST, params);
+        requestBean.setModuleTag(TAG);
+        RequestManager.setJsonRequest(requestBean, handleResponse(callback, params));
     }
 
     public void requestAddProduct(final Map<String, String> params,
                                   @NonNull final IModelAsyncResponse<MvvmProductDetailEntity> callback) {
         String url = MvvmUrlConstants.Add_Product;
-        RequestManager.setJsonRequest(url, params, TAG, REQUEST_ADD_PRODUCT,
-                handleResponse(callback, params));
+        RequestBean requestBean = new RequestBean(url, REQUEST_ADD_PRODUCT, params);
+        requestBean.setModuleTag(TAG);
+        RequestManager.setJsonRequest(requestBean, handleResponse(callback, params));
     }
 
     private <T> JsonCallback handleResponse(final IModelAsyncResponse<T> callback,
@@ -210,9 +216,9 @@ public class MvvmShopModel {
         }
         String res = "{success:true,code:200,message:'',data:" +
                 "{id:'" + id + "',name:'Shop Item " + index +
-                "',type:'2',typeName:'食品',mainImgUrl:'http://pic31.nipic.com/20130720/5793914_122325176000_2.jpg'" +
+                "',type:'2',typeName:'食品',mainImgUrl:'http://img.qqzhi.com/uploads/2019-02-28/093640204.jpg'" +
                 ",distance:'" + distanceStr + "',latitude:'" + endLatBd + "',longitude:'" + endLonBd +
-                "',imgUrls:'http://pic31.nipic.com/20130720/5793914_122325176000_2.jpg,https://hellorfimg.zcool.cn/preview/70789213.jpg'" +
+                "',imgUrls:'http://img.qqzhi.com/uploads/2019-02-28/093640204.jpg,https://c-ssl.duitang.com/uploads/item/201510/08/20151008100856_uGVh5.thumb.700_0.jpeg'" +
                 ",onlineDate:'2019-03-01',mobile:'18672943566'" +
                 ",addressDistrict:'上海市浦东新区浦东新区',addressZipCode:'310115'" +
                 ",addressStreet:'盛夏路888号'" +
@@ -256,7 +262,7 @@ public class MvvmShopModel {
             index++;
             id = "1100201903281020000000" + (index > 9 ? index : "0" + index);
             res += ",{id:'" + id + "',name:'Shop Item " + index +
-                    "', distance:'" + distanceStr + "',mainImgUrl:'http://pic31.nipic.com/20130720/5793914_122325176000_2.jpg'}";
+                    "', distance:'" + distanceStr + "',mainImgUrl:'http://img.qqzhi.com/uploads/2019-02-28/093640204.jpg'}";
         }
         res += "]}";
         try {
@@ -300,7 +306,7 @@ public class MvvmShopModel {
             shopIndex++;
             shopId = "1100201903281020000000" + (shopIndex > 9 ? shopIndex : "0" + shopIndex);
             res += ",{id:'" + shopId + "',name:'Shop Item " + shopIndex +
-                    "', distance:'" + distanceStr + "',mainImgUrl:'http://pic31.nipic.com/20130720/5793914_122325176000_2.jpg', " +
+                    "', distance:'" + distanceStr + "',mainImgUrl:'http://img.qqzhi.com/uploads/2019-02-28/093640204.jpg', " +
                     "products:[{name:'Product Item 1'}, {name:'Product Item 2'}]}";
         }
         res += "]}";
