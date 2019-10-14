@@ -13,8 +13,8 @@
         android:id="@+id/console_container"
         android:layout_width="match_parent"
         android:layout_height="280dip"
-        myattrs:demoConsoleMode="image"
-        myattrs:demoScrollOrientation="X" />
+        myattrs:demo_dccccv_consoleMode="image"
+        myattrs:demo_dccccv_scrollOrientation="X" />
 
     <ScrollView
         android:layout_width="match_parent"

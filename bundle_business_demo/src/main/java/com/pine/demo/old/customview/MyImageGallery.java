@@ -65,15 +65,15 @@ public class MyImageGallery extends View {
                 mContext.obtainStyledAttributes(attrs, R.styleable.DemoMyImageGalleryCV);
         if (typedArray != null) {
             mTextOrientaion = typedArray.getInt(
-                    R.styleable.DemoMyImageGalleryCV_demoTextOrientation, ORIENTATION_X);
+                    R.styleable.DemoMyImageGalleryCV_demo_dmigcv_textOrientation, ORIENTATION_X);
             mImageWidth = typedArray.getDimensionPixelSize(
-                    R.styleable.DemoMyImageGalleryCV_demoImageWidth, 320);
+                    R.styleable.DemoMyImageGalleryCV_demo_dmigcv_imageWidth, 320);
             mImageHeight = typedArray.getDimensionPixelSize(
-                    R.styleable.DemoMyImageGalleryCV_demoImageHeight, 320);
+                    R.styleable.DemoMyImageGalleryCV_demo_dmigcv_imageHeight, 320);
             mTextSize = typedArray.getDimensionPixelSize(
-                    R.styleable.DemoMyImageGalleryCV_demoImageTextSize, 12);
+                    R.styleable.DemoMyImageGalleryCV_demo_dmigcv_imageTextSize, 12);
             mTextColor = typedArray.getColor(
-                    R.styleable.DemoMyImageGalleryCV_demoImageTextColor, 0xCCC0FF3E);
+                    R.styleable.DemoMyImageGalleryCV_demo_dmigcv_imageTextColor, 0xCCC0FF3E);
         }
         typedArray.recycle();
     }

@@ -88,9 +88,9 @@ public class CustomConsoleContainer extends LinearLayout {
 
         if (typedArray != null) {
             mConsoleMode = typedArray
-                    .getInt(R.styleable.DemoCustomConsoleContainerCV_demoConsoleMode, TEXT_MODE);
+                    .getInt(R.styleable.DemoCustomConsoleContainerCV_demo_dccccv_consoleMode, TEXT_MODE);
             mScrollOrientaion = typedArray.getInt(
-                    R.styleable.DemoCustomConsoleContainerCV_demoScrollOrientation, SCROLL_X);
+                    R.styleable.DemoCustomConsoleContainerCV_demo_dccccv_scrollOrientation, SCROLL_X);
         }
         LayoutInflater.from(mContext).inflate(
                 R.layout.demo_custom_console_container, this, true);

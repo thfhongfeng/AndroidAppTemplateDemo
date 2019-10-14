@@ -1,26 +1,22 @@
 <resources>
     <declare-styleable name="DemoCustomConsoleContainerCV">
-        <attr name="demoConsoleMode" >
+        <attr name="demo_dccccv_consoleMode">
             <flag name="text" value="1"></flag>
             <flag name="image" value="2"></flag>
         </attr>
-        <attr name="demoScrollOrientation">
+        <attr name="demo_dccccv_scrollOrientation">
             <flag name="X" value="1"></flag>
             <flag name="Y" value="2"></flag>
         </attr>
     </declare-styleable>
     <declare-styleable name="DemoMyImageGalleryCV">
-        <attr name="demoTextOrientation">
+        <attr name="demo_dmigcv_textOrientation">
             <flag name="X" value="1"></flag>
             <flag name="Y" value="2"></flag>
         </attr>
-        <attr name="demoImageWidth" format="dimension">
-        </attr>
-        <attr name="demoImageHeight" format="dimension">
-        </attr>
-        <attr name="demoImageTextSize" format="dimension">
-        </attr>
-        <attr name="demoImageTextColor" format="color">
-        </attr>
+        <attr name="demo_dmigcv_imageWidth" format="dimension"></attr>
+        <attr name="demo_dmigcv_imageHeight" format="dimension"></attr>
+        <attr name="demo_dmigcv_imageTextSize" format="dimension"></attr>
+        <attr name="demo_dmigcv_imageTextColor" format="color"></attr>
     </declare-styleable>
 </resources>
