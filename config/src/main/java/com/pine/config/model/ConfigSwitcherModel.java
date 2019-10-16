@@ -29,10 +29,11 @@ public class ConfigSwitcherModel {
     private final String TAG = LogUtils.makeLogTag(this.getClass());
     private static final int REQUEST_REQUEST_QUERY_BUNDLE_SWITCHER = 1;
 
-    public boolean requestBundleSwitcherData(@NonNull IModelAsyncResponse<ArrayList<ConfigSwitcherEntity>> callback) {
+    public boolean requestBundleSwitcherData(HashMap<String, String> params,
+                                             @NonNull IModelAsyncResponse<ArrayList<ConfigSwitcherEntity>> callback) {
         String url = UrlConstants.Query_BundleSwitcher_Data;
         JsonCallback httpStringCallback = handleResponse(callback);
-        RequestBean requestBean = new RequestBean(url, REQUEST_REQUEST_QUERY_BUNDLE_SWITCHER, new HashMap<String, String>());
+        RequestBean requestBean = new RequestBean(url, REQUEST_REQUEST_QUERY_BUNDLE_SWITCHER, params);
         requestBean.setModuleTag(TAG);
         return RequestManager.setJsonRequest(requestBean, httpStringCallback);
     }
@@ -85,7 +86,7 @@ public class ConfigSwitcherModel {
                 "[{configKey:'bundle_welcome', state:1},{configKey:'bundle_login', state:1}," +
                 "{configKey:'bundle_main', state:1},{configKey:'bundle_user', state:1}," +
                 "{configKey:'bundle_business_mvc', state:1},{configKey:'bundle_business_mvp', state:1}," +
-                "{configKey:'bundle_business_mvvm', state:1},{configKey:'business_demo_bundle', state:1}," +
+                "{configKey:'bundle_business_mvvm', state:1}," +
                 "{configKey:'fun_add_shop', state:1},{configKey:'fun_add_product', state:1}," +
                 "{configKey:'fun_add_travel_note', state:1}]}";
         try {

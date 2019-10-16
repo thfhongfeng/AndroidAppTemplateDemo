@@ -7,8 +7,6 @@ android {
     defaultConfig {
         minSdkVersion build_versions.minSdkVersion
         targetSdkVersion build_versions.targetSdkVersion
-        versionCode build_versions.versionCode
-        versionName build_versions.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -35,13 +33,22 @@ android {
 
     productFlavors {
         common {
+            versionCode build_product_versionCode.common
+            versionName build_product_versionName.common
 
+            manifestPlaceholders = [app_name: build_product_appName.common]
         }
         huawei {
+            versionCode build_product_versionCode.huawei
+            versionName build_product_versionName.huawei
 
+            manifestPlaceholders = [app_name: build_product_appName.huawei]
         }
         xiaomi {
+            versionCode build_product_versionCode.xiaomi
+            versionName build_product_versionName.xiaomi
 
+            manifestPlaceholders = [app_name: build_product_appName.xiaomi]
         }
     }
 
