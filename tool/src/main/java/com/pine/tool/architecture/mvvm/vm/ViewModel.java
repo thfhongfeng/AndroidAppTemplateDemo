@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import com.pine.tool.architecture.state.UiState;
+import com.pine.tool.binding.data.ParametricLiveData;
 import com.pine.tool.util.LogUtils;
 
 /**
@@ -59,7 +60,7 @@ public abstract class ViewModel extends android.arch.lifecycle.ViewModel {
     public MutableLiveData<Integer> getObserveSyncLiveDataData() {
         return observeSyncLiveData;
     }
-    
+
     /**
      * 用于LiveData是其它功能操作返回（不是在VM中初始化赋值）的情况，
      * 在LiveData返回时通过调用setSyncLiveDataTag来告诉UI开始绑定Observer，
@@ -127,5 +128,15 @@ public abstract class ViewModel extends android.arch.lifecycle.ViewModel {
 
     public void setToastResId(@StringRes Integer id) {
         toastResIdData.setValue(id);
+    }
+
+    ParametricLiveData<Integer, Object[]> toastResData = new ParametricLiveData<>();
+
+    public ParametricLiveData<Integer, Object[]> getToastResData() {
+        return toastResData;
+    }
+
+    public void setToastRes(@StringRes Integer id, Object... formatArgs) {
+        toastResData.setValue(id, formatArgs);
     }
 }

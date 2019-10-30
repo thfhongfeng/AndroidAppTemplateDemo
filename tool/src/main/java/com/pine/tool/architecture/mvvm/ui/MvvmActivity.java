@@ -70,6 +70,13 @@ public abstract class MvvmActivity<T extends ViewDataBinding, VM extends ViewMod
         }
     };
 
+    private Observer<Integer> mToastResDataObserver = new Observer<Integer>() {
+        @Override
+        public void onChanged(@Nullable Integer resId) {
+            showShortToast(resId, mViewModel.getToastResData().getCustomData());
+        }
+    };
+
     @CallSuper
     @Override
     protected void beforeInitOnCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +93,7 @@ public abstract class MvvmActivity<T extends ViewDataBinding, VM extends ViewMod
         mViewModel.getUiLoadingData().observe(this, mUiLoadingDataObserver);
         mViewModel.getToastMsgData().observe(this, mToastMsgDataObserver);
         mViewModel.getToastResIdData().observe(this, mToastResIdDataObserver);
+        mViewModel.getToastResData().observe(this, mToastResDataObserver);
         observeInitLiveData();
     }
 
