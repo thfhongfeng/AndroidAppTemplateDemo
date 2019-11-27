@@ -2,9 +2,11 @@ package com.sleticalboy.autotrack;
 
 import android.app.Activity;
 import android.app.Application;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.sleticalboy.autotrack.sdk.TrackSdk;
+
 import org.jetbrains.annotations.NotNull;
 
 /**

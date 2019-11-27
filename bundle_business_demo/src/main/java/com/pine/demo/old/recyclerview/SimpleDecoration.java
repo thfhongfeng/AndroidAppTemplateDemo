@@ -3,8 +3,9 @@ package com.pine.demo.old.recyclerview;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by tanghongfeng on 2017/8/10.

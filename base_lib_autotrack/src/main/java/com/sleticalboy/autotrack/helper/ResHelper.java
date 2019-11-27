@@ -1,6 +1,7 @@
 package com.sleticalboy.autotrack.helper;
 
 import android.content.res.Resources;
+
 import com.sleticalboy.autotrack.AutoTrack;
 
 /**

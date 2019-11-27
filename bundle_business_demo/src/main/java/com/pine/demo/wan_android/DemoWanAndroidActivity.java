@@ -1,26 +1,13 @@
 package com.pine.demo.wan_android;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.net.http.SslError;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.DownloadListener;
-import android.webkit.GeolocationPermissions;
-import android.webkit.HttpAuthHandler;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.pine.base.ui.BaseNoActionBarActivity;
 import com.pine.base.widget.view.CommonWebView;
 import com.pine.demo.DemoUrlConstants;
 import com.pine.demo.R;
-import com.pine.tool.util.WebViewUtils;
-
-import cn.pedant.SafeWebViewBridge.InjectedChromeClient;
 
 public class DemoWanAndroidActivity extends BaseNoActionBarActivity implements View.OnClickListener {
     private CommonWebView web_view;

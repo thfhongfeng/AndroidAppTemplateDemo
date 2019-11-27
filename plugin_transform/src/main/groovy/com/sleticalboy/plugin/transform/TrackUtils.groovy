@@ -6,7 +6,7 @@ class TrackUtils {
 
     private static final String INFLATER = 'AppCompatViewInflater$DeclaredOnClickListener'
     private static final String ANDROIDX_INFLATER = 'androidx.appcompat.app.' + INFLATER
-    private static final String SUPPORT_INFLATER = 'android.support.v7.app.' + INFLATER
+    private static final String SUPPORT_INFLATER = 'androidx.appcompat.app.' + INFLATER
     // BuildConfig.class R.class R$attr.class R2.class ...
     private static final Pattern R_BUILD_CONFIG = Pattern.compile("^(BuildConfig|R(2)?|R\\\$.*)\\.class")
 

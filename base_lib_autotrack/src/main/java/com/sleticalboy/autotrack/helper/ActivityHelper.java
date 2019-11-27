@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created on 19-5-11.

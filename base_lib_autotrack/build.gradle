@@ -11,7 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -37,7 +37,7 @@ dependencies {
     // 测试 dependency end
 
     // android官方 dependency begin
-    api build_dependency["android_appcompat_v7"]
+    api build_dependency["android_appcompat"]
     api build_dependency["android_constraint_layout"]
     api build_dependency["android_support_design"]
     // android官方 dependency end

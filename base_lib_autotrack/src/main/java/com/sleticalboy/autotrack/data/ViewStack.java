@@ -1,6 +1,6 @@
 package com.sleticalboy.autotrack.data;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created on 19-5-11.

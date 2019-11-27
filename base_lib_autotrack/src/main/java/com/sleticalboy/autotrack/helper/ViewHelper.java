@@ -3,12 +3,13 @@ package com.sleticalboy.autotrack.helper;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.sleticalboy.autotrack.data.ViewNode;
 import com.sleticalboy.autotrack.data.ViewStack;

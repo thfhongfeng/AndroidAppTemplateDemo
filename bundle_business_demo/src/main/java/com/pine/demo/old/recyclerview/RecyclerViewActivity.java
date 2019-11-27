@@ -3,18 +3,19 @@ package com.pine.demo.old.recyclerview;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.pine.demo.R;
 
@@ -79,7 +80,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     // 创建线性布局管理器
                     LinearLayoutManager llm = new LinearLayoutManager(RecyclerViewActivity.this);
                     // 设置垂直方向
-                    llm.setOrientation(OrientationHelper.VERTICAL);
+                    llm.setOrientation(RecyclerView.VERTICAL);
                     // 给RecyclerView设置布局管理器
                     mRecyclerView.setLayoutManager(llm);
                     // 创建和设置适配器
@@ -107,7 +108,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     // 创建线性布局管理器
                     LinearLayoutManager llm = new LinearLayoutManager(RecyclerViewActivity.this);
                     // 设置水平方向
-                    llm.setOrientation(OrientationHelper.HORIZONTAL);
+                    llm.setOrientation(RecyclerView.HORIZONTAL);
                     // 给RecyclerView设置布局管理器
                     mHorRecyclerView.setLayoutManager(llm);
                     // 创建和设置适配器
@@ -185,7 +186,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     // 创建线性布局管理器
                     LinearLayoutManager llm = new LinearLayoutManager(RecyclerViewActivity.this);
                     // 设置垂直方向
-                    llm.setOrientation(OrientationHelper.VERTICAL);
+                    llm.setOrientation(RecyclerView.VERTICAL);
                     // 给RecyclerView设置布局管理器
                     mDecorRecyclerView.setLayoutManager(llm);
                     // 给RecyclerView添加装饰（比如divider）
@@ -215,7 +216,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     // 创建线性布局管理器
                     LinearLayoutManager llm = new LinearLayoutManager(RecyclerViewActivity.this);
                     // 设置垂直方向
-                    llm.setOrientation(OrientationHelper.VERTICAL);
+                    llm.setOrientation(RecyclerView.VERTICAL);
                     // 给RecyclerView设置布局管理器
                     mAdvanceDecorRecyclerView.setLayoutManager(llm);
                     // 给RecyclerView添加装饰（比如divider）
