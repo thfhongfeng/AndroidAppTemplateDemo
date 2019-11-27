@@ -109,19 +109,14 @@ public class MvvmTravelNoteListActivity extends
     @Override
     protected void setupActionBar(ImageView goBackIv, TextView titleTv, View menuContainer) {
         titleTv.setText(R.string.mvvm_travel_note_list_title);
-        if (ConfigSwitcherServer.getInstance().isEnable(ConfigKey.FUN_ADD_TRAVEL_NOTE_KEY)) {
-            menuContainer.findViewById(R.id.menu_iv).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MvvmTravelNoteListActivity.this, MvvmTravelNoteReleaseActivity.class);
-                    intent.putExtra("id", mViewModel.mId);
-                    startActivity(intent);
-                }
-            });
-            menuContainer.findViewById(R.id.menu_iv).setVisibility(View.VISIBLE);
-        } else {
-            menuContainer.findViewById(R.id.menu_iv).setVisibility(View.GONE);
-        }
+        menuContainer.findViewById(R.id.menu_iv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MvvmTravelNoteListActivity.this, MvvmTravelNoteReleaseActivity.class);
+                intent.putExtra("id", mViewModel.mId);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
