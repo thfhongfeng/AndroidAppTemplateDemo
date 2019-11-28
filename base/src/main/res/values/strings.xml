@@ -66,6 +66,8 @@
     <string name="base_baidu_map_title">百度地图</string>
     <string name="base_baidu_map_marker_need">请在地图上选择一个地点</string>
 
+    <string name="base_scan_forbidden_result">无效的链接</string>
+
     <string name="base_main_tab_home">首页</string>
     <string name="base_main_tab_mine">我的</string>
 </resources>

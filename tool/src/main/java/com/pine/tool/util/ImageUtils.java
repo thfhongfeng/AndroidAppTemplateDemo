@@ -944,7 +944,7 @@ public class ImageUtils {
                 0x00FFFFFF,
                 Shader.TileMode.MIRROR);
         paint.setShader(shader);
-        paint.setXfermode(new PorterDuffXfermode(android.graphics.PorterDuff.Mode.DST_IN));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawRect(0, srcHeight + REFLECTION_GAP, srcWidth, ret.getHeight(), paint);
         if (!reflectionBitmap.isRecycled()) reflectionBitmap.recycle();
         if (recycle && !src.isRecycled()) src.recycle();
@@ -1721,7 +1721,7 @@ public class ImageUtils {
                                            final boolean recycle) {
         if (isEmptyBitmap(src)) return null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        src.compress(Bitmap.CompressFormat.JPEG, quality, baos);
+        src.compress(CompressFormat.JPEG, quality, baos);
         byte[] bytes = baos.toByteArray();
         if (recycle && !src.isRecycled()) src.recycle();
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -1816,7 +1816,7 @@ public class ImageUtils {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = sampleSize;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        src.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        src.compress(CompressFormat.JPEG, 100, baos);
         byte[] bytes = baos.toByteArray();
         if (recycle && !src.isRecycled()) src.recycle();
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
@@ -1853,7 +1853,7 @@ public class ImageUtils {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        src.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        src.compress(CompressFormat.JPEG, 100, baos);
         byte[] bytes = baos.toByteArray();
         BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
@@ -1917,17 +1917,17 @@ public class ImageUtils {
             bitmap = BitmapFactory.decodeFile(pathName, opts);
         }
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        int quality = 100;
-        bitmap.compress(CompressFormat.JPEG, quality, baos);
-        LogUtils.d(TAG, "需要压缩到" + maxSize + "byte," +
-                "图片按尺寸压缩后大小：" + baos.toByteArray().length + "byte"
-        );
-        boolean isCompressed = false;
         if (callback != null) {
             callback.onCompress(100);
         }
+        int quality = 100;
+        bitmap.compress(CompressFormat.JPEG, quality, baos);
+        LogUtils.d(TAG, "需要压缩到" + maxSize + "byte，" +
+                "图片按尺寸压缩后大小：" + baos.toByteArray().length + "byte");
+        boolean isCompressed = false;
         while (baos.toByteArray().length > maxSize && quality >= 2) {
-            quality = quality <= 10 ? quality / 2 : quality - 10;
+            int factor = (int) (baos.toByteArray().length / maxSize);
+            quality = (factor > 8 || quality <= 10) ? quality / 2 : (quality - 10);
             baos.reset();
             bitmap.compress(CompressFormat.JPEG, quality, baos);
             LogUtils.d(TAG, "质量压缩到原来的" + quality + "%时大小为："
@@ -2026,6 +2026,20 @@ public class ImageUtils {
     ///////////////////////////////////////////////////////////////////////////
     // other utils methods
     ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 得到bitmap的大小(字节数)
+     */
+    public static int getBitmapSize(Bitmap bitmap) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {    //API 19
+            return bitmap.getAllocationByteCount();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {//API 12
+            return bitmap.getByteCount();
+        }
+        // 在低版本中用一行的字节x高度
+        return bitmap.getRowBytes() * bitmap.getHeight();
+    }
 
     private static File getFileByPath(final String filePath) {
         return isSpace(filePath) ? null : new File(filePath);
