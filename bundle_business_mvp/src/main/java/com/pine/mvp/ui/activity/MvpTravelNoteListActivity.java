@@ -1,5 +1,6 @@
 package com.pine.mvp.ui.activity;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,13 +40,13 @@ public class MvpTravelNoteListActivity extends
     }
 
     @Override
-    protected void findViewOnCreate() {
+    protected void findViewOnCreate(Bundle savedInstanceState) {
         swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
         recycle_view = findViewById(R.id.recycle_view);
     }
 
     @Override
-    protected void init() {
+    protected void init(Bundle savedInstanceState) {
         swipe_refresh_layout.setOnRefreshListener(this);
         swipe_refresh_layout.setColorSchemeResources(
                 R.color.red,

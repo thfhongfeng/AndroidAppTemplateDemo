@@ -51,7 +51,7 @@ public class DemoOldHomeActivity extends BaseActionBarActivity {
     }
 
     @Override
-    protected void findViewOnCreate() {
+    protected void findViewOnCreate(Bundle savedInstanceState) {
         demo_rv = findViewById(R.id.demo_rv);
     }
 
@@ -61,7 +61,7 @@ public class DemoOldHomeActivity extends BaseActionBarActivity {
     }
 
     @Override
-    protected void init() {
+    protected void init(Bundle savedInstanceState) {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         demo_rv.setLayoutManager(layoutManager);
         demo_rv.addItemDecoration(new GridSpacingItemDecoration(2,

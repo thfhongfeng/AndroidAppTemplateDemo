@@ -1,5 +1,6 @@
 package com.pine.demo.wan_android;
 
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -21,7 +22,7 @@ public class DemoWanAndroidActivity extends BaseNoActionBarActivity implements V
     }
 
     @Override
-    protected void findViewOnCreate() {
+    protected void findViewOnCreate(Bundle savedInstanceState) {
         refresh_btn_tv = findViewById(R.id.refresh_btn_tv);
         web_view = findViewById(R.id.web_view);
     }
@@ -33,7 +34,7 @@ public class DemoWanAndroidActivity extends BaseNoActionBarActivity implements V
     }
 
     @Override
-    protected void init() {
+    protected void init(Bundle savedInstanceState) {
         initEvent();
         initWebView();
     }
