@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -159,7 +158,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     mStaggeredRecyclerView.setHasFixedSize(true);
                     // 创建线性布局管理器
                     StaggeredGridLayoutManager sglm =
-                            new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL);
+                            new StaggeredGridLayoutManager(4, RecyclerView.VERTICAL);
                     // 给RecyclerView设置布局管理器
                     mStaggeredRecyclerView.setLayoutManager(sglm);
                     // 创建和设置适配器

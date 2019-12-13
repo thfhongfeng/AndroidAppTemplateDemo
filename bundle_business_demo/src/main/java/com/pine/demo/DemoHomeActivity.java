@@ -66,8 +66,7 @@ public class DemoHomeActivity extends BaseActionBarActivity {
         demo_rv.addItemDecoration(new GridSpacingItemDecoration(2,
                 getResources().getDimensionPixelOffset(R.dimen.dp_10), true));
         demo_rv.setHasFixedSize(true);
-        mDemoAdapter = new DemoAdapter(
-                DemoAdapter.DEMO_VIEW_HOLDER);
+        mDemoAdapter = new DemoAdapter();
         mDemoAdapter.enableEmptyComplete(true, false);
 
         ArrayList<DemoItemEntity> list = new ArrayList<>();

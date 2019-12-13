@@ -19,21 +19,11 @@ import com.pine.demo.bean.DemoItemEntity;
  */
 
 public class DemoAdapter extends BaseNoPaginationListAdapter {
-    public static final int DEMO_VIEW_HOLDER = 1;
-
-    public DemoAdapter(int defaultItemViewType) {
-        super(defaultItemViewType);
-    }
 
     @Override
     public BaseListViewHolder getViewHolder(ViewGroup parent, int viewType) {
-        BaseListViewHolder viewHolder = null;
-        switch (viewType) {
-            case DEMO_VIEW_HOLDER:
-                viewHolder = new DemoViewHolder(parent.getContext(), LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.demo_item, parent, false));
-                break;
-        }
+        BaseListViewHolder viewHolder = new DemoViewHolder(parent.getContext(), LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.demo_item, parent, false));
         return viewHolder;
     }
 
