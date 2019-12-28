@@ -6,10 +6,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.pine.base.ui.BaseActionBarActivity;
 import com.pine.demo.R;
 import com.pine.demo.adapter.DemoAdapter;
@@ -24,6 +20,10 @@ import com.pine.tool.widget.decor.GridSpacingItemDecoration;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by tanghongfeng on 2019/1/14
  */
@@ -33,9 +33,10 @@ public class DemoOldHomeActivity extends BaseActionBarActivity {
     private DemoAdapter mDemoAdapter;
 
     @Override
-    protected void beforeInitOnCreate(@Nullable Bundle savedInstanceState) {
+    protected boolean beforeInitOnCreate(@Nullable Bundle savedInstanceState) {
         super.beforeInitOnCreate(savedInstanceState);
         setActionBarTag(ACTION_BAR_CENTER_TITLE_TAG | ACTION_BAR_NO_GO_BACK_TAG);
+        return false;
     }
 
     @Override

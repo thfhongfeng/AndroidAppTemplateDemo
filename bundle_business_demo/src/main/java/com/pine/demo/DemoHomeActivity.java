@@ -32,9 +32,10 @@ public class DemoHomeActivity extends BaseActionBarActivity {
     private DemoAdapter mDemoAdapter;
 
     @Override
-    protected void beforeInitOnCreate(@Nullable Bundle savedInstanceState) {
+    protected boolean beforeInitOnCreate(@Nullable Bundle savedInstanceState) {
         super.beforeInitOnCreate(savedInstanceState);
         setActionBarTag(ACTION_BAR_CENTER_TITLE_TAG | ACTION_BAR_NO_GO_BACK_TAG);
+        return false;
     }
 
     @Override
