@@ -3,8 +3,13 @@ package com.pine.demo.old;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pine.base.ui.BaseActionBarActivity;
 import com.pine.demo.R;
@@ -19,10 +24,6 @@ import com.pine.demo.old.recyclerview.RecyclerViewActivity;
 import com.pine.tool.widget.decor.GridSpacingItemDecoration;
 
 import java.util.ArrayList;
-
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by tanghongfeng on 2019/1/14
@@ -40,7 +41,7 @@ public class DemoOldHomeActivity extends BaseActionBarActivity {
     }
 
     @Override
-    protected void setupActionBar(ImageView goBackIv, TextView titleTv) {
+    protected void setupActionBar(View actionbar, ImageView goBackIv, TextView titleTv) {
         titleTv.setText(R.string.demo_home_title);
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         clipboard.getPrimaryClip();
