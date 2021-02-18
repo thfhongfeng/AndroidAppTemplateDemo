@@ -9,7 +9,7 @@
     android:paddingRight="16dip"
     android:paddingBottom="16dip">
 
-    <com.pine.demo.customview.CustomConsoleContainer
+    <com.pine.template.demo.customview.CustomConsoleContainer
         android:id="@+id/console_container"
         android:layout_width="match_parent"
         android:layout_height="280dip"

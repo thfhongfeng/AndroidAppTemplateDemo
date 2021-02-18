@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pine.demo">
+    package="com.pine.template.demo">
 
     <!-- java.lang.SecurityException: Permission denied (missing INTERNET permission?) -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,25 +11,25 @@
         android:supportsRtl="true">
 
         <activity
-            android:name="com.pine.demo.DemoHomeActivity"
+            android:name="com.pine.template.demo.DemoHomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
 
         <activity
-            android:name="com.pine.demo.test.DemoTestActivity"
+            android:name="com.pine.template.demo.test.DemoTestActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
 
         <activity
-            android:name="com.pine.demo.wan_android.DemoWanAndroidActivity"
+            android:name="com.pine.template.demo.wan_android.DemoWanAndroidActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
 
         <activity
-            android:name="com.pine.demo.novice_guide.DemoNoviceGuideActivity"
+            android:name="com.pine.template.demo.novice_guide.DemoNoviceGuideActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
@@ -37,7 +37,7 @@
 
         <!-- old -->
         <activity
-            android:name="com.pine.demo.old.DemoOldHomeActivity"
+            android:name="com.pine.template.demo.old.DemoOldHomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>

@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:background="@color/ghost_white">
 
-        <com.pine.demo.test.DemoTestView
+        <com.pine.template.demo.test.DemoTestView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

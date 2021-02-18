@@ -13,10 +13,10 @@
         android:padding="@dimen/dp_20"
         android:text="Wan Android(Click To Refresh)" />
 
-    <com.pine.base.widget.view.CommonWebView
+    <com.pine.template.base.widget.view.CommonWebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></com.pine.base.widget.view.CommonWebView>
+        android:layout_weight="1"></com.pine.template.base.widget.view.CommonWebView>
 
 </LinearLayout>

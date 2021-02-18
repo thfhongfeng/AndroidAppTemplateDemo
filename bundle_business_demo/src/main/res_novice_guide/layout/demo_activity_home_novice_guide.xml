@@ -145,8 +145,8 @@
 
     </LinearLayout>
 
-    <com.pine.base.component.novice_guide.NoviceGuideView
+    <com.pine.template.base.component.novice_guide.NoviceGuideView
         android:id="@+id/novice_guide_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.pine.base.component.novice_guide.NoviceGuideView>
+        android:layout_height="match_parent"></com.pine.template.base.component.novice_guide.NoviceGuideView>
 </FrameLayout>
