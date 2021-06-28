@@ -60,16 +60,6 @@ def build_dependency = [
 ]
 ext.build_dependency = build_dependency
 
-
-/**
- * autotrack模块依赖
- */
-def build_dependency_autotrack = [
-        // 语言dependency
-        "jetbrains_kotlin": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31",
-]
-ext.build_dependency_autotrack = build_dependency_autotrack
-
 /**
  * demo模块依赖
  */
